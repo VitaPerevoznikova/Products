@@ -101,8 +101,6 @@ export class App extends Component {
     const sortedProducts = [...this.state.products].sort(
       (a, b) => b.discount - a.discount);
 
-      // console.log(sortedProducts)
-
     return (
       <div>
         <Section title="Product Form">
