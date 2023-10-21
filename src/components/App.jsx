@@ -125,7 +125,7 @@ export class App extends Component {
           </div>
         </Section> 
         
-        {/* Counter  */}
+      {/* Counter  */}
         <Section>
           <h1>Hello FSON89🥳</h1>
 
