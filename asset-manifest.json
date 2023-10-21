@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Products/static/css/main.ff337c54.css",
-    "main.js": "/Products/static/js/main.34c49bc3.js",
-    "index.html": "/Products/index.html",
-    "main.ff337c54.css.map": "/Products/static/css/main.ff337c54.css.map",
-    "main.34c49bc3.js.map": "/Products/static/js/main.34c49bc3.js.map"
+    "main.css": "/VitaPerevoznikova/Products/static/css/main.ff337c54.css",
+    "main.js": "/VitaPerevoznikova/Products/static/js/main.34c49bc3.js",
+    "index.html": "/VitaPerevoznikova/Products/index.html",
+    "main.ff337c54.css.map": "/VitaPerevoznikova/Products/static/css/main.ff337c54.css.map",
+    "main.34c49bc3.js.map": "/VitaPerevoznikova/Products/static/js/main.34c49bc3.js.map"
   },
   "entrypoints": [
     "static/css/main.ff337c54.css",
