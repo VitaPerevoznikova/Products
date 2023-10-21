@@ -3,3 +3,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 25px;
 }
+.containerForm{
+    width: 300px;
+    margin: 0 auto;
+}

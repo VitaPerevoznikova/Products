@@ -39,75 +39,79 @@ const productsData = [
 ];
 
 export class App extends Component {
-
-  state ={
+  state = {
     counterValue: 0,
     shoeMessage: false,
     page: 1,
     products: productsData,
-  }
+  };
 
-  // Counter 
+  // Counter
   handleIncrement = () => {
-  // N 1
+    // N 1
 
-  this.setState({counterValue:this.state.counterValue + 1});
+    this.setState({ counterValue: this.state.counterValue + 1 });
 
-  // N 2
-  // this.setState(state => {
-  //   return {
-  //     counterValue: state.counterValue + 1
-  //   }
-  // }
-  // )
-};
+    // N 2
+    // this.setState(state => {
+    //   return {
+    //     counterValue: state.counterValue + 1
+    //   }
+    // }
+    // )
+  };
 
   handleDecrement = () => {
-    if(this.state.counterValue === 0){
-      alert("Please, stop")
+    if (this.state.counterValue === 0) {
+      alert('Please, stop');
       return;
     }
-    this.setState({counterValue:this.state.counterValue - 1});
+    this.setState({ counterValue: this.state.counterValue - 1 });
   };
 
   handleDeleteProduct = productId => {
-   this.setState({products: this.state.products.filter((product) => product.id !== productId)});
+    this.setState({
+      products: this.state.products.filter(product => product.id !== productId),
+    });
   };
 
-  // Form 
-  handleAddProduct = (productsData) => {
-  const hasDuplicates = this.state.products.some((product) => product.title === productsData.title);
 
-  if(hasDuplicates){
-   alert(`Oops, product with title '${productsData.title}' already exists.`);
-   return;
-  }
-  const finalProduct = {
-    ...productsData,
-    id: nanoid()
-  }
-  //  N 1
-  this.setState({
-    products: [...this.state.products,finalProduct]
-  })
-  // N 2
-  // this.setState(prevState => ({
-  //   products: [...prevState.products, finalProduct],
-  // }))
-  }
+  // Form
+  handleAddProduct = productsData => {
+    const hasDuplicates = this.state.products.some(
+      product => product.title === productsData.title
+    );
+
+    if (hasDuplicates) {
+      alert(`Oops, product with title '${productsData.title}' already exists.`);
+      return;
+    }
+    const finalProduct = {
+      ...productsData,
+      id: nanoid(),
+    };
+    //  N 1
+    this.setState({
+      products: [...this.state.products, finalProduct],
+    });
+    // N 2
+    // this.setState(prevState => ({
+    //   products: [...prevState.products, finalProduct],
+    // }))
+  };
 
   render() {
-
     const sortedProducts = [...this.state.products].sort(
-      (a, b) => b.discount - a.discount);
+      (a, b) => b.discount - a.discount
+    );
 
     return (
       <div>
-        <Section title="Product Form">
-         <ProductForm  
-         handleAddProduct = {this.handleAddProduct}/>
-        </Section>
-
+        <div className={css.containerForm}>
+          <Section title="Product Form">
+            <ProductForm handleAddProduct={this.handleAddProduct} />
+          </Section>
+        </div>
         <Section title="Product List">
           <div className={css.productList}>
             {sortedProducts.map(product => {
@@ -123,9 +127,9 @@ export class App extends Component {
               );
             })}
           </div>
-        </Section> 
-        {/* Counter  */}
-        
+        </Section>
+        Counter 
+
         <Section>
           <h1>Hello FSON89🥳</h1>
 
@@ -133,9 +137,9 @@ export class App extends Component {
           <b>Counter value: {this.state.counterValue}</b>
           <button onClick={this.handleIncrement}>Increment</button>
 
-          { this.state.counterValue >= 5 && <div>
-            Congrats,you win discount 20% OFF - RT765
-            </div>}
+          {this.state.counterValue >= 5 && (
+            <div>Congrats,you win discount 20% OFF - RT765</div>
+          )}
         </Section>
       </div>
     );
