@@ -4,6 +4,7 @@ import { Product } from './Products/Product';
 import Section from './Section/Section';
 import ProductForm from './ProductForm/ProductForm';
 import { nanoid } from 'nanoid';
+import Modal from './Modal/Modal';
 
 const productsData = [
   {
@@ -44,6 +45,39 @@ export class App extends Component {
     shoeMessage: false,
     page: 1,
     products: productsData,
+    isOpenModal: false,
+    modalData: null,
+  };
+
+
+  // Local Storeg 
+  componentDidMount(){
+    const stringifiedProducts = localStorage.getItem('products');
+    const parsedProduct = JSON.parse(stringifiedProducts) ?? productsData;
+
+    this.setState({product: parsedProduct});
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+   if(prevState.product !== this.state.products){
+    const stringifiedProducts = JSON.stringify(this.state.products);
+     localStorage.setItem('products', stringifiedProducts);
+    console.log('Yes, update ');
+   }
+  }
+
+  // Btn See details
+  openModal = someDataModal => {
+    this.setState({
+      isOpenModal: true,
+      modalData: someDataModal,
+    });
+  };
+  closeModal = () => {
+    this.setState({
+      isOpenModal: false,
+      modalData: false,
+    });
   };
 
   // Counter
@@ -74,7 +108,6 @@ export class App extends Component {
       products: this.state.products.filter(product => product.id !== productId),
     });
   };
-
 
   // Form
   handleAddProduct = productsData => {
@@ -123,13 +156,13 @@ export class App extends Component {
                   price={product.price}
                   discount={product.discount}
                   handleDeleteProduct={this.handleDeleteProduct}
+                  openModal={this.openModal}
                 />
               );
             })}
           </div>
         </Section>
-        Counter 
-
+        Counter
         <Section>
           <h1>Hello FSON89🥳</h1>
 
@@ -141,6 +174,12 @@ export class App extends Component {
             <div>Congrats,you win discount 20% OFF - RT765</div>
           )}
         </Section>
+
+        {this.state.isOpenModal && (
+          <Modal 
+          closeModal={this.closeModal} 
+          modalData={this.state.modalData} />
+        )}
       </div>
     );
   }

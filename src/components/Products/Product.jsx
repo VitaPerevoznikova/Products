@@ -6,6 +6,7 @@ export const Product = ({
   price,
   discount,
   handleDeleteProduct,
+  openModal,
 }) => {
   const productBg = discount ? '#97e605' : '#f9bf04';
 
@@ -34,10 +35,19 @@ export const Product = ({
         Add to cart
       </button>
       <button
+        className={css.productAddToCartBtn}
+        onClick={() => openModal({ title, price, discount })}
+        type="button"
+      >
+        See the details
+      </button>
+      <button
         onClick={() => handleDeleteProduct(id)}
         className={css.productAddToCartBtn}
         type="button"
-      > &times;
+      >
+        {' '}
+        &times;
       </button>
     </div>
   );
